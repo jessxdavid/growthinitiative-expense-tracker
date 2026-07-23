@@ -17,6 +17,20 @@ This is a **blank template** — no data, no accounts, nothing pre-filled. Clone
 
 ---
 
+## Screenshots
+
+**Dashboard** — totals, profit, payouts owed, monthly trend, category breakdown, and the expense/income log.
+
+![Dashboard](assets/dashboard.png)
+
+**Input** — log an expense or income, manage categories/budgets, and set the team profit-share.
+
+![Input](assets/input.png)
+
+> Sample data shown for illustration. Fresh clones start blank.
+
+---
+
 ## What it does
 
 - **Log expenses and income** in one place (toggle Expense / Income on the Input tab).
