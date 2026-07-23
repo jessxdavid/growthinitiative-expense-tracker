@@ -1,5 +1,16 @@
 # Expense Tracker
 
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
+![Cloudflare Workers](https://img.shields.io/badge/Cloudflare_Workers-F38020?style=flat-square&logo=cloudflare&logoColor=white)
+![Cloudflare Pages](https://img.shields.io/badge/Cloudflare_Pages-F38020?style=flat-square&logo=cloudflare&logoColor=white)
+![VS Code](https://img.shields.io/badge/VS_Code-007ACC?style=flat-square&logo=visualstudiocode&logoColor=white)
+![Git](https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white)
+![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white)
+![License: MIT](https://img.shields.io/badge/License-MIT-green?style=flat-square)
+![Cost](https://img.shields.io/badge/Cost-%240%2Fmo-success?style=flat-square)
+
 A clean, single-file expense + income tracker with automatic team profit-share, categories, budgets, recurring items, attachments, insights, PDF/CSV export, and optional live cloud sync across devices. Runs at **$0** on Cloudflare (or open the file locally with no setup at all).
 
 This is a **blank template** — no data, no accounts, nothing pre-filled. Clone it, brand it, deploy it (optional), and hand it to a client.
@@ -65,8 +76,45 @@ Then double-click `index.html`, or follow **[GUIDE.md](GUIDE.md)** to host it an
 
 ---
 
+## Built with
+
+| Layer | Tech |
+|-------|------|
+| Frontend | Vanilla **HTML5 · CSS3 · JavaScript** — no framework, single file, zero build step |
+| Backend (sync) | **Cloudflare Workers** + **KV** |
+| Hosting | **Cloudflare Pages** |
+| Tooling | **VS Code** · **Git** · **GitHub** · **Wrangler** (Cloudflare CLI) |
+| Cost | **$0/mo** on Cloudflare's free tier |
+
+Design goals: no dependencies, no build pipeline, no database server — one HTML file and one Worker, so it's trivial to fork, rebrand, and deploy for each client.
+
+---
+
+## Roadmap ideas
+
+- Multi-currency support
+- Role-based access (view-only vs editor)
+- Automatic weekly payout reminders
+- Per-client theming presets
+
+---
+
+## Contributors
+
+Built and maintained by **[@jessxdavid](https://github.com/jessxdavid)** — Growth Initiative.
+
+[![Contributors](https://contrib.rocks/image?repo=jessxdavid/growthinitiative-expense-tracker)](https://github.com/jessxdavid/growthinitiative-expense-tracker/graphs/contributors)
+
+Contributions welcome — open an issue or a pull request.
+
+---
+
 ## Notes
 
 - Data lives in the browser (`localStorage`) until you connect cloud sync.
 - Cloud sync is protected by a secret key you choose. Anyone with the **link + key** can view/edit — it's a shared team tool, not a login system.
 - 100% static + one Worker. No database server, no monthly bill on Cloudflare's free tier.
+
+## License
+
+MIT — see [LICENSE](LICENSE). Free to use, modify, and deploy for your clients.
