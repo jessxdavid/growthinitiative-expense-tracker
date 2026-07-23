@@ -45,11 +45,23 @@ Deploy the page to Cloudflare Pages and the sync backend (Worker + KV) so a whol
 
 ## Quick start
 
+### Easiest — no git, no coding (for anyone)
+1. Go to the repo: **https://github.com/jessxdavid/growthinitiative-expense-tracker**
+2. Click the green **`< > Code`** button → **Download ZIP**.
+3. **Unzip** the downloaded file.
+4. Open the unzipped folder and **double-click `index.html`**.
+5. It opens in your browser and works right away. Start logging expenses.
+
+That's the whole thing for personal / single-computer use. Data saves in that browser. To share it as a live link across a team, follow **[GUIDE.md](GUIDE.md) → Part 2**.
+
+### With git (for developers)
 ```bash
 git clone https://github.com/jessxdavid/growthinitiative-expense-tracker.git
 cd growthinitiative-expense-tracker
 ```
-Then either double-click `index.html`, or follow **[GUIDE.md](GUIDE.md)** to host it and turn on live sync.
+Then double-click `index.html`, or follow **[GUIDE.md](GUIDE.md)** to host it and turn on live sync.
+
+> Heads-up: GitHub only **stores** the files — the repo link itself is not a working website. You either open `index.html` on your computer, or deploy it once (GUIDE.md Part 2) to get a shareable link.
 
 ---
 
