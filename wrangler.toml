@@ -1,0 +1,12 @@
+name = "expense-tracker-sync"
+main = "worker.js"
+compatibility_date = "2024-11-01"
+
+# KV namespace that stores the single "state" document.
+# Replace the id below with the one `wrangler kv namespace create HUB` prints.
+kv_namespaces = [
+  { binding = "HUB", id = "PASTE_YOUR_KV_ID_HERE" }
+]
+
+# SYNC_KEY is NOT stored here. Set it as a secret:
+#   wrangler secret put SYNC_KEY
