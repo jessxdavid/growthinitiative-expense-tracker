@@ -10,6 +10,9 @@
 ![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white)
 ![License: MIT](https://img.shields.io/badge/License-MIT-green?style=flat-square)
 ![Cost](https://img.shields.io/badge/Cost-%240%2Fmo-success?style=flat-square)
+[![CI](https://github.com/jessxdavid/growthinitiative-expense-tracker/actions/workflows/validate.yml/badge.svg)](https://github.com/jessxdavid/growthinitiative-expense-tracker/actions/workflows/validate.yml)
+
+### 🔗 [Live demo → gi-expense-demo.pages.dev](https://gi-expense-demo.pages.dev/?demo)
 
 A clean, single-file expense + income tracker with automatic team profit-share, categories, budgets, recurring items, attachments, insights, PDF/CSV export, and optional live cloud sync across devices. Runs at **$0** on Cloudflare (or open the file locally with no setup at all).
 
@@ -87,6 +90,31 @@ cd growthinitiative-expense-tracker
 Then double-click `index.html`, or follow **[GUIDE.md](GUIDE.md)** to host it and turn on live sync.
 
 > Heads-up: GitHub only **stores** the files — the repo link itself is not a working website. You either open `index.html` on your computer, or deploy it once (GUIDE.md Part 2) to get a shareable link.
+
+---
+
+## Architecture
+
+One static file for the UI, one Worker for sync, one KV store for data. No server, no database to manage.
+
+```mermaid
+flowchart LR
+    subgraph Devices
+        A["Browser<br/>(laptop / phone)"]
+        B["Browser<br/>(teammate)"]
+    end
+    P["Cloudflare Pages<br/>(index.html — the app)"]
+    W["Cloudflare Worker<br/>(sync API, Bearer-key auth)"]
+    K[("Cloudflare KV<br/>state = expenses, income,<br/>categories, team, payouts")]
+
+    A -- "loads app" --> P
+    B -- "loads app" --> P
+    A <-- "GET / PUT every ~5s" --> W
+    B <-- "GET / PUT every ~5s" --> W
+    W <--> K
+```
+
+Local-only mode skips the Worker entirely — data lives in the browser's `localStorage`. Turn on cloud sync and every device sharing the same Worker URL + key sees one live board.
 
 ---
 

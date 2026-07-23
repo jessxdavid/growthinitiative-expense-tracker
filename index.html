@@ -1004,10 +1004,30 @@
 
   let toastT;function toast(msg){const t=document.getElementById("toast");t.textContent=msg||"Saved ✓";t.classList.add("show");clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove("show"),1800)}
 
+  /* Demo mode: open with ?demo in the URL to load neutral sample data (for the live preview). Does nothing on a normal, non-demo install. */
+  function seedDemo(){
+    const cm=today().slice(0,7);
+    saveCats([{id:"salary",name:"Payroll",color:"#3C83F6",budget:6000},{id:"rent",name:"Rent",color:"#F59E0B",budget:2000},{id:"software",name:"Software",color:"#22D3EE",budget:0},{id:"marketing",name:"Marketing",color:"#A855F7",budget:1500},{id:"misc",name:"Miscellaneous",color:"#F472B6",budget:0}]);
+    saveTeam([{name:"Alex",pct:10},{name:"Sam",pct:15}]);
+    const c=(id)=>loadCats().find(x=>x.id===id)||loadCats()[0];
+    const mk=(amount,d,catId,label,why,type,kind)=>{const cc=c(catId);return{id:Date.now()+Math.floor(Math.random()*1e7),amount,date:cm+"-"+d,catId:cc.id,catName:cc.name,catColor:cc.color,label,why:why||"",kind:kind||"biz",type:type||"expense",files:[]}};
+    saveExp([
+      mk(4200,"01","salary","Team payroll","Keeps the team running and delivering"),
+      mk(1800,"01","rent","Office lease","Keeps the team in one space"),
+      mk(240,"03","software","Notion + tools","Ops and docs for the whole team"),
+      mk(950,"05","marketing","Meta ads","Drives new leads into the pipeline"),
+      mk(120,"07","misc","Team lunch","Culture, keeps the crew tight","expense","personal"),
+      mk(9000,"02","misc","Client A — retainer","Monthly retainer","income"),
+      mk(4500,"06","misc","Client B — project","Project milestone","income")
+    ]);
+  }
+
   /* init */
   loadCats();ensureRecurring();
+  if(/[?&#]demo/i.test(location.href) && loadExp().length===0){ seedDemo(); range="month"; }
   document.getElementById("in-date").value=today();
-  bindDrop();renderCatChoose();renderCatPanel();renderTplPanel();renderTeamPanel();renderAttach();render();
+  bindDrop();renderCatChoose();renderCatPanel();renderTplPanel();renderTeamPanel();renderAttach();
+  if(range==="month"){setRange("month");} else {render();}
   initSync();
 </script>
 </body>

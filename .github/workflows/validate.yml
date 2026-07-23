@@ -1,0 +1,33 @@
+﻿name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Required files present
+        run: |
+          test -f index.html
+          test -f worker.js
+          test -f wrangler.toml
+          echo "Core files present."
+
+      - name: App is self-contained (no external runtime deps)
+        run: |
+          if grep -Eq "<script[^>]+src=|<link[^>]+href=\"https?:" index.html; then
+            echo "External runtime dependency found in index.html"; exit 1
+          fi
+          echo "index.html is a single self-contained file."
+
+      - name: HTML sanity check
+        run: |
+          grep -qi "<!doctype html>" index.html
+          grep -qi "</html>" index.html
+          echo "HTML looks well-formed."
